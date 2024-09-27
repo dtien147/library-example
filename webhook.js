@@ -15,7 +15,7 @@ app.post('/webhook', bodyParser.raw({ type: 'application/json' }), (req, res) =>
         const event = req.headers['x-github-event'];
         if (event === 'push') {
             // Pull the latest code when a push event is received
-            exec('git fetch && git pull origin main', (error, stdout, stderr) => {
+            exec('git fetch && git pull origin main && yarn install && yarn build && pm2 start dist/index.js', (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error executing git pull: ${error}`);
                     return res.status(500).send('Error pulling code');
