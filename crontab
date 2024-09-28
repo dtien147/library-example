@@ -1,0 +1,5 @@
+# Stop the PM2 app at 9 PM every day
+0 21 * * * /home/ec2-user/stop.sh
+
+# Start the PM2 app at 10 AM every day
+0 10 * * * /home/ec2-user/start.sh
