@@ -40,8 +40,12 @@ class Server {
     // Add a new book
     this.app.post('/books', async (req: Request, res: Response) => {
       const { title, author } = req.body;
-      const newBook = await BookManager.addBook(title, author);
-      res.status(201).json(newBook);
+      try {
+        const newBook = await BookManager.addBook(title, author);
+        res.status(201).json(newBook);
+      } catch (e) {
+        res.status(400).json(e);
+      }
     });
 
     // Update an existing book
