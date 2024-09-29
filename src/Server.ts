@@ -53,8 +53,10 @@ class Server {
 
         const newBook = await BookManager.addBook(title, author);
         res.status(201).json(newBook);
-      } catch (e) {
-        res.status(400).json(e);
+      } catch (e: any) {
+        res.status(400).json({
+          message: e.message
+        });
       }
     });
 
