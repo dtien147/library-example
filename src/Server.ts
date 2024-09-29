@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import BookManager from './services/BookManager';
+import { validateBook } from './validatiors/bookValidator';
 
 class Server {
   private app: Application;
@@ -41,6 +42,15 @@ class Server {
     this.app.post('/books', async (req: Request, res: Response) => {
       const { title, author } = req.body;
       try {
+        if (!title || typeof title !== 'string' || title.trim().length === 0) {
+          throw new Error('Title is required and must be a non-empty string');
+        }
+      
+        // Validate author
+        if (!author || typeof author !== 'string' || author.trim().length === 0) {
+          throw new Error('Author is required and must be a non-empty string');
+        }
+
         const newBook = await BookManager.addBook(title, author);
         res.status(201).json(newBook);
       } catch (e) {
