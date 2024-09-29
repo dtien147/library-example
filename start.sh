@@ -1,2 +1,2 @@
-pm2 start dist/index.js
+yarn start-build
 pm2 start webhook.js
