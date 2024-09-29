@@ -1,14 +1,17 @@
 import knex from 'knex';
 import path from 'path';
+import environment from '../environment';
 
 const projectFolder = path.join(__dirname, '../../');
-const dbFile = path.join(projectFolder, 'data/library.sqlite');
 const migrationFolder = path.join(projectFolder, 'migrations');
 
 const db = knex({
-  client: 'sqlite3',
+  client: 'mysql2',
   connection: {
-    filename: dbFile, // Ensure this is the correct path
+    host: environment.DB_HOST,
+    user: environment.DB_USERNAME,
+    password: environment.DB_PASSWORD,
+    database: environment.DB_NAME,
   },
   migrations: {
     directory: migrationFolder, // Pointing to the correct migrations folder
