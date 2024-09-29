@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "dotenvx run -f .env.local -- nodemon",
+    "start-build": "dotenvx run -f .env.local -- yarn start-app",
+    "start-app": "pm2 start dist/index.js",
     "migrate": "knex --knexfile ./src/db/knex.ts migrate:latest",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
