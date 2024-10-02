@@ -1,8 +1,8 @@
-import * as dotenvx from '@dotenvx/dotenvx';
+const dotenvx = require('@dotenvx/dotenvx')
 
 dotenvx.config();
 
-export default {
+module.exports = {
     DB_HOST: process.env.DB_HOST,
     DB_USERNAME: process.env.DB_USERNAME,
     DB_PASSWORD: process.env.DB_PASSWORD,

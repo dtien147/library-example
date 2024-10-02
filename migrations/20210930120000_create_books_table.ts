@@ -1,6 +1,4 @@
-import { Knex } from 'knex';
-
-export async function up(knex: Knex): Promise<void> {
+export async function up(knex) {
   return knex.schema.createTable('books', (table) => {
     table.increments('id');
     table.string('title').notNullable();
@@ -8,6 +6,6 @@ export async function up(knex: Knex): Promise<void> {
   });
 }
 
-export async function down(knex: Knex): Promise<void> {
+export async function down(knex) {
   return knex.schema.dropTableIfExists('books');
 }
